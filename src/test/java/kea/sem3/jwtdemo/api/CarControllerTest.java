@@ -19,15 +19,19 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
+import javax.transaction.Transactional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.Matchers.*;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+@Transactional
 class CarControllerTest {
 
     @Autowired
@@ -76,14 +80,15 @@ class CarControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/cars")
                         .contentType("application/json")
                         .accept("application/json")
-                        .content(objectMapper.writeValueAsString(newCar)))
+                        .content(objectMapper.writeValueAsString(newCar))) //objectMapper translate CarRequest to json
                 .andExpect(status().isOk())
+                .andDo(print()) // remove when test works
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
         //Verify that it actually ended in the database
         assertEquals(3, carRepository.count());
     }
-
-/*    @Test
+/*
+    @Test
     public void editCar() throws Exception {
         //New price and discount for the ford
         CarRequest carToEdit = new CarRequest("Ford", "Focus", 500, 20);
@@ -95,7 +100,7 @@ class CarControllerTest {
                 .andExpect(status().isOk());
         Car editedCarFromDB = carRepository.findById(carFordId).orElse(null);
         assertEquals(500, editedCarFromDB.getPricePrDay());
-        assertEquals(20, editedCarFromDB.getBestDiscount());
+      //  assertEquals(20, editedCarFromDB.getBestDiscount());
     }
 
     @Test
@@ -104,6 +109,6 @@ class CarControllerTest {
                 .andExpect(status().isOk());
         //Verify that we only have one car in the database
         assertEquals(1, carRepository.count());
-    }*/
+    } */
 }
 
