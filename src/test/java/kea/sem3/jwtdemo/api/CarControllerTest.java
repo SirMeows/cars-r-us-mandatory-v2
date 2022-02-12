@@ -78,7 +78,7 @@ class CarControllerTest {
     @Test
     public void testAddCar() throws Exception {
         CarRequest newCar = new CarRequest("WW", "Polo", 200, 10);
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/cars")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/cars")
                         .contentType("application/json")
                         .accept("application/json")
                         .content(objectMapper.writeValueAsString(newCar))) //objectMapper translate CarRequest to json
