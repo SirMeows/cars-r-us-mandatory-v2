@@ -1,9 +1,10 @@
 package kea.sem3.jwtdemo.api;
 
+import kea.sem3.jwtdemo.dto.MemberRequest;
 import kea.sem3.jwtdemo.dto.MemberResponse;
+import kea.sem3.jwtdemo.entity.Member;
 import kea.sem3.jwtdemo.service.MemberService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,9 +17,17 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @GetMapping
     public List<MemberResponse> getMembers() {
-        return null;
+        return memberService.getMembers();
+    }
+    @GetMapping("/{id}")
+    public MemberResponse getMember(@PathVariable String userName)  throws Exception {
+        return memberService.getMember(userName, false);
     }
 
-
+    @PostMapping
+    public MemberResponse addMember(@RequestBody MemberRequest body) {
+        return memberService.addMember(body);
+    }
 }

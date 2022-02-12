@@ -29,8 +29,8 @@ public class CarService {
     }
 
     public CarResponse addCar(CarRequest body){
-        Car carNew = carRepository.save(new Car(body));
-        return new CarResponse(carNew,true);
+        Car newCar = carRepository.save(new Car(body));
+        return new CarResponse(newCar,true);
     }
 
     public CarResponse editCar(CarRequest body, int id){

@@ -1,7 +1,9 @@
 package kea.sem3.jwtdemo.service;
 
 import kea.sem3.jwtdemo.dto.CarResponse;
+import kea.sem3.jwtdemo.dto.MemberRequest;
 import kea.sem3.jwtdemo.dto.MemberResponse;
+import kea.sem3.jwtdemo.entity.Member;
 import kea.sem3.jwtdemo.error.Client4xxException;
 import kea.sem3.jwtdemo.repositories.MemberRepository;
 import lombok.AllArgsConstructor;
@@ -17,10 +19,23 @@ public class MemberService {
        return MemberResponse.getMembersFromEntities(memberRepository.findAll());
     }
 
-    public MemberResponse getMember(int id, boolean all) throws Exception {
-        return new MemberResponse(memberRepository.findById(id).orElseThrow(() -> new Client4xxException("No member with this id")), false);
+    public MemberResponse getMember(String userName, boolean all) throws Exception {
+        return new MemberResponse(memberRepository.findById(userName).orElseThrow(() -> new Client4xxException("No member with this id")), false);
     }
 
+    public MemberResponse addMember(MemberRequest body) {
+        Member newMember = memberRepository.save(new Member(body));
+        return new MemberResponse(newMember,true);
+    }
 
+    public MemberResponse editMember(MemberRequest body, String userName) {
+        Member memberToEdit = new Member(body);
+        memberToEdit.setUsername(userName);
+        return new MemberResponse(memberToEdit,true);
+    }
 
+    public void deleteMember(String userName) {
+        memberRepository.findById(userName); {
+        }
+    }
 }
