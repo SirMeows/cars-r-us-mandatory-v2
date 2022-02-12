@@ -13,26 +13,35 @@ import java.util.stream.Collectors;
 @Service
 public class CarService {
     CarRepository carRepository;
+
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
+
     public List<CarResponse> getCars(){
         List<Car> cars = carRepository.findAll();
         return CarResponse.getCarsFromEntities(cars);
     }
+
     public CarResponse getCar(int id,boolean all) throws Exception {
         CarResponse response = new CarResponse(carRepository.findById(id).orElseThrow(() ->new Client4xxException("no car with this id")), false);
         return response;
     }
+
     public CarResponse addCar(CarRequest body){
         Car carNew = carRepository.save(new Car(body));
         return new CarResponse(carNew,true);
     }
+
     public CarResponse editCar(CarRequest body, int id){
-        return null;
+        Car carToEdit = new Car(body);
+        carToEdit.setId(id);
+        carRepository.save(carToEdit);
+        return new CarResponse(carToEdit, true);
     }
+
     public void deleteCar(int id) {
-        //return null;
+        carRepository.deleteById(id);
     }
 }
 

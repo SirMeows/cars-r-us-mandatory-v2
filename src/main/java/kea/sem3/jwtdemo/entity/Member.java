@@ -1,7 +1,14 @@
 package kea.sem3.jwtdemo.entity;
 
-import javax.persistence.*;
+import kea.sem3.jwtdemo.dto.MemberRequest;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity(name = "member")
 @DiscriminatorValue("MEMBER")
 public class Member extends BaseUser {
@@ -15,11 +22,17 @@ public class Member extends BaseUser {
     private boolean approved;
     private int ranking;
 
-
-    public Member() {};
-
     public Member(String username, String email, String password, String firstName) {
         super(username, email, password);
         this.firstName = firstName;
+    }
+
+    //TODO: Should we have these?
+    public Member(MemberRequest body) {
+        this.firstName = body.getFirstName();
+        this.lastName = body.getLastName();
+        this.street = body.getStreet();
+        this.city = body.getCity();
+        this.zip = body.getZip();
     }
 }

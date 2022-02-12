@@ -22,19 +22,23 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-    public CarResponse getCars(@PathVariable int id) throws Exception{
+    public CarResponse getCar(@PathVariable int id) throws Exception{ // returns single car
         return carService.getCar(id,false);
     }
 
     @PostMapping
     public CarResponse addCar(@RequestBody CarRequest body){
+
         return carService.addCar(body);
     }
 
     @PutMapping("/{id}")
-    public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){return null;}
+    public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){
+        return carService.editCar(body, id);
+    }
 
     @DeleteMapping("/{id}")
-    public void deleteCar(@PathVariable int id){}
-
+    public void deleteCar(@PathVariable int id){
+        carService.deleteCar(id);
+    }
 }

@@ -2,6 +2,7 @@ package kea.sem3.jwtdemo.entity;
 
 import kea.sem3.jwtdemo.security.UserWithPassword;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @DiscriminatorValue("USER")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "user")
@@ -42,14 +44,17 @@ public class BaseUser implements UserWithPassword {
    @CollectionTable(name="user_role")
    List<Role> roles = new ArrayList<>();
 
-   public BaseUser() {
-   }
-
    public BaseUser(String username, String email, String password) {
       this.username = username;
       this.email = email;
       this.password = pwEncoder.encode(password);
       this.enabled = true;
+   }
+
+   public BaseUser(BaseUser body) { // TODO: Is this needed for BaseUser?
+      this.username = body.getUsername();
+      this.email = body.getEmail();
+      this.password = body.getPassword();
    }
 
    @Override
@@ -61,6 +66,7 @@ public class BaseUser implements UserWithPassword {
    public List<Role> getRoles() {
       return roles;
    }
+
    @Override
    public void addRole(Role role){
       roles.add(role);

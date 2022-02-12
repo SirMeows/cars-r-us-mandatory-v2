@@ -2,6 +2,7 @@ package kea.sem3.jwtdemo.entity;
 
 import kea.sem3.jwtdemo.dto.CarRequest;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.aspectj.asm.IModelFilter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,9 +15,10 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NoArgsConstructor
 @Table(name = "car")
 public class Car {
+
     @Id
     @GeneratedValue
     private int id;
@@ -38,8 +40,6 @@ public class Car {
     @UpdateTimestamp
     private LocalDateTime dateEdited;
 
-    public Car(){}
-
     public Car(CarRequest body) {
         this.brand = body.getBrand();
         this.model = body.getModel();
@@ -53,5 +53,4 @@ public class Car {
         this.pricePrDay = pricePrDay;
         this.discount = discount;
     }
-
 }
