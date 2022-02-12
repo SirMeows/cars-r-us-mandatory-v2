@@ -4,9 +4,12 @@ import kea.sem3.jwtdemo.security.UserWithPassword;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,14 @@ public class BaseUser implements UserWithPassword {
    @ElementCollection(fetch = FetchType.EAGER)
    @CollectionTable(name="user_role")
    List<Role> roles = new ArrayList<>();
+
+   @Column(name="date_created")
+   @CreationTimestamp
+   private LocalDateTime dateCreated;
+
+   @Column(name = "date_edited")
+   @UpdateTimestamp
+   private LocalDateTime dateEdited;
 
    public BaseUser(String username, String email, String password) {
       this.username = username;

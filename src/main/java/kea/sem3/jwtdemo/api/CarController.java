@@ -26,13 +26,12 @@ public class CarController {
         return carService.getCar(id,false);
     }
 
-    @PostMapping
+    @PutMapping
     public CarResponse addCar(@RequestBody CarRequest body){
-
         return carService.addCar(body);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){
         return carService.editCar(body, id);
     }

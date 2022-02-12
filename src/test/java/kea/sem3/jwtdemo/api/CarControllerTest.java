@@ -72,11 +72,12 @@ class CarControllerTest {
 
     @Test
     public void testAllCars() throws Exception {
+
     }
 
     @Test
     public void testAddCar() throws Exception {
-        CarRequest newCar = new CarRequest("WW", "Polo", 200, 10); // TODO: Is this even in the right place?
+        CarRequest newCar = new CarRequest("WW", "Polo", 200, 10);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/cars")
                         .contentType("application/json")
                         .accept("application/json")

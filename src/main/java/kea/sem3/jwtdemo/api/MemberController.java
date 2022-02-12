@@ -16,18 +16,29 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
-
+    // ADMIN
     @GetMapping
     public List<MemberResponse> getMembers() {
         return memberService.getMembers();
     }
+    // USER
     @GetMapping("/{id}")
-    public MemberResponse getMember(@PathVariable String userName)  throws Exception {
-        return memberService.getMember(userName, false);
+    public MemberResponse getMember(@PathVariable String id)  throws Exception {
+        return memberService.getMember(id, false);
     }
-
-    @PostMapping
+    // USER
+    @PutMapping
     public MemberResponse addMember(@RequestBody MemberRequest body) {
         return memberService.addMember(body);
+    }
+    // USER
+    @PatchMapping("/{id}")
+    public MemberResponse editMember(@RequestBody MemberRequest body, @PathVariable String id) {
+        return memberService.editMember(body, id);
+    }
+    // ADMIN
+    @DeleteMapping("/{id}")
+    public void deleteMember(@PathVariable String id) {
+        memberService.deleteMember(id);
     }
 }
