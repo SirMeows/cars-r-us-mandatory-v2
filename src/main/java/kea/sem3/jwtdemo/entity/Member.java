@@ -27,12 +27,19 @@ public class Member extends BaseUser {
         this.firstName = firstName;
     }
 
-    //TODO: Should we have these?
     public Member(MemberRequest body) {
         this.firstName = body.getFirstName();
         this.lastName = body.getLastName();
         this.street = body.getStreet();
         this.city = body.getCity();
         this.zip = body.getZip();
+    }
+
+    public Member(String firstName, String lastName, String street, String city, String zip) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
     }
 }

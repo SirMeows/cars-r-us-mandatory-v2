@@ -13,8 +13,7 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CarRequest<CarBrand> {
-    //@Enumerated(EnumType.STRING)
-    //private CarBrand brand;
+
     private String brand;
     private String model;
     private double pricePrDay;
