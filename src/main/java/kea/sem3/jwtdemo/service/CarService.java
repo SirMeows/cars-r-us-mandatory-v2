@@ -24,8 +24,8 @@ public class CarService {
     }
 
     public CarResponse getCar(int id,boolean all) throws Exception {
-        CarResponse response = new CarResponse(carRepository.findById(id).orElseThrow(() ->new Client4xxException("no car with this id")), false);
-        return response;
+        return new CarResponse(carRepository.findById(id)
+                .orElseThrow(() ->new Client4xxException("no car with this id")), false);
     }
 
     public CarResponse addCar(CarRequest body){

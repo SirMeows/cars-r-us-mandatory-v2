@@ -19,8 +19,9 @@ public class MemberService {
        return MemberResponse.getMembersFromEntities(memberRepository.findAll());
     }
 
-    public MemberResponse getMember(String userName, boolean all) throws Exception {
-        return new MemberResponse(memberRepository.findById(userName).orElseThrow(() -> new Client4xxException("No member with this id")), false);
+    public MemberResponse getMember(String id, boolean all) throws Exception {
+        return new MemberResponse(memberRepository.findById(id)
+                .orElseThrow(() -> new Client4xxException("No member with this id")), false);
     }
 
     public MemberResponse addMember(MemberRequest body) {

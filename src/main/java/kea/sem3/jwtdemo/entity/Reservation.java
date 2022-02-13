@@ -17,6 +17,8 @@ public class Reservation {
     @GeneratedValue
     private int id;
 
+    private double pricePerDay;
+
     @Column(name="reservation_date")
     @CreationTimestamp
     private LocalDateTime reservationDate;
@@ -32,4 +34,8 @@ public class Reservation {
     @Column(name = "date_edited")
     @UpdateTimestamp
     private LocalDateTime dateEdited;
+
+    public void setPricePerDay(double pricePerDay) {
+        this.pricePerDay = pricePerDay;
+    }
 }

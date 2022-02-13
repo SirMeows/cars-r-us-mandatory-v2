@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import kea.sem3.jwtdemo.dto.BaseUserRequest;
 import kea.sem3.jwtdemo.security.UserWithPassword;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -64,7 +65,7 @@ public class BaseUser implements UserWithPassword {
       this.enabled = true;
    }
 
-   public BaseUser(BaseUser body) { // TODO: Is this needed for BaseUser?
+   public BaseUser(BaseUserRequest body) {
       this.username = body.getUsername();
       this.email = body.getEmail();
       this.password = body.getPassword();
