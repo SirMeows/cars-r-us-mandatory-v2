@@ -40,6 +40,8 @@ public class Car {
     @UpdateTimestamp
     private LocalDateTime dateEdited;
 
+//    private boolean isAvailable;
+
     public Car(CarRequest body) {
         this.brand = body.getBrand();
         this.model = body.getModel();

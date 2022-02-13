@@ -55,6 +55,8 @@ public class BaseUser implements UserWithPassword {
    @UpdateTimestamp
    private LocalDateTime dateEdited;
 
+//   private boolean isActive; Potentially add this to keep track of active users
+
    public BaseUser(String username, String email, String password) {
       this.username = username;
       this.email = email;
