@@ -21,7 +21,7 @@ public class MemberController {
     public List<MemberResponse> getMembers() {
         return memberService.getMembers();
     }
-    // USER
+    // USER only themselves, ADMIN all details
     @GetMapping("/{id}")
     public MemberResponse getMember(@PathVariable String id)  throws Exception {
         return memberService.getMember(id, false);
@@ -36,7 +36,7 @@ public class MemberController {
     public MemberResponse editMember(@RequestBody MemberRequest body, @PathVariable String id) {
         return memberService.editMember(body, id);
     }
-    // ADMIN
+    // USER + ADMIN
     @DeleteMapping("/{id}")
     public void deleteMember(@PathVariable String id) {
         memberService.deleteMember(id);
