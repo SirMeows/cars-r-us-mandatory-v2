@@ -40,7 +40,7 @@ class ReservationServiceInMemoryTest {
         reservationRepository.deleteAll();
         Car car = new Car("Volvo", "C40", 560,10);
         carId = carRepository.save(car).getId();
-        Member member = new Member("usernxxx","xxx@a.dk","password123","sirKitty");
+        Member member = new Member("usernælkjhg","jgldsghalgblad@a.dk","password123","sirKitty");
         memberId = memberRepository.save(member).getUsername();
     }
 

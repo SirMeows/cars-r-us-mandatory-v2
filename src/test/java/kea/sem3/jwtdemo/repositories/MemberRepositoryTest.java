@@ -16,6 +16,7 @@ class MemberRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        memberRepository.deleteAll();
         memberRepository.save(new Member("xxx","xxx@a.dk","test12","jens"));
         memberRepository.save(new Member("zzz","zzz@a.dk","test12","jens-knud"));
     }
