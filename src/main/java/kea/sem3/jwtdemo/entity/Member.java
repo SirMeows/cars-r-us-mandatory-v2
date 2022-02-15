@@ -1,11 +1,15 @@
 package kea.sem3.jwtdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kea.sem3.jwtdemo.dto.MemberRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,6 +25,10 @@ public class Member extends BaseUser {
     private String zip;
     private boolean approved;
     private int ranking;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "member")
+    Set<Reservation> reservations = new HashSet<>();
 
     public Member(String username, String email, String password, String firstName) {
         super(username, email, password);

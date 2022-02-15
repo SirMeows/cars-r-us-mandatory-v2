@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,18 +14,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "reservation")
 public class Reservation {
+
     @Id
     @GeneratedValue
     private int id;
-
-    private double pricePerDay;
 
     @Column(name="reservation_date")
     @CreationTimestamp
     private LocalDateTime reservationDate;
 
     @Column(name="rental_date")
-    @CreationTimestamp
+    @CreationTimestamp // TODO: Should this be @DateModified
     private LocalDateTime rentalDate;
 
     @Column(name="date_created")
@@ -35,7 +35,20 @@ public class Reservation {
     @UpdateTimestamp
     private LocalDateTime dateEdited;
 
-    public void setPricePerDay(double pricePerDay) {
-        this.pricePerDay = pricePerDay;
+    @JoinColumn(name = "member_id")
+    @ManyToOne
+    private Member member;
+
+    @JoinColumn(name = "car_id")
+    @ManyToOne
+    private Car car;
+
+    public Reservation(LocalDateTime rentalDate, Member member, Car car) {
+        this.rentalDate = rentalDate;
+        this.member = member;
+        this.car = car;
     }
 }
+
+
+//TODO: Update DataSetup method to contain a couple hardcoded Reservations
