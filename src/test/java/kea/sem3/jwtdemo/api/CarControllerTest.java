@@ -35,7 +35,7 @@ import static org.hamcrest.Matchers.*;
 class CarControllerTest {
 
     @Autowired
-    MockMvc mockMvc; // is this the right place?
+    MockMvc mockMvc;
 
     @Autowired
     CarRepository carRepository;
@@ -43,7 +43,7 @@ class CarControllerTest {
     //Do something here
 
     @Autowired
-    private ObjectMapper objectMapper; // TODO What is this for?
+    private ObjectMapper objectMapper; //objectMapper translate object to json
 
     static int carFordId, carSuzukiId;
 
@@ -81,7 +81,7 @@ class CarControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put("/api/cars")
                         .contentType("application/json")
                         .accept("application/json")
-                        .content(objectMapper.writeValueAsString(newCar))) //objectMapper translate CarRequest to json
+                        .content(objectMapper.writeValueAsString(newCar)))
                 .andExpect(status().isOk())
                 .andDo(print()) // remove when test works
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
