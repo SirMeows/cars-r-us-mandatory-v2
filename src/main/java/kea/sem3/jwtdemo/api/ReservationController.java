@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/reservation")
+@RequestMapping("/api/reservations")
 public class ReservationController {
     ReservationService reservationService;
 
@@ -25,7 +25,7 @@ public class ReservationController {
         return reservationService.getReservationById(id);
     }
 
-    @PutMapping
+    @PostMapping
     public ReservationResponse makeReservation(@RequestBody ReservationRequest body) {
         return reservationService.makeReservation(body);
     }

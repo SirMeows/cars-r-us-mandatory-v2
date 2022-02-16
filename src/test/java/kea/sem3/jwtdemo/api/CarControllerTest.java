@@ -79,8 +79,8 @@ class CarControllerTest {
     public void testAddCar() throws Exception {
         CarRequest newCar = new CarRequest("WW", "Polo", 200, 10);
         mockMvc.perform(MockMvcRequestBuilders.put("/api/cars")
-                        .contentType("application/json")
-                        .accept("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newCar)))
                 .andExpect(status().isOk())
                 .andDo(print()) // remove when test works
