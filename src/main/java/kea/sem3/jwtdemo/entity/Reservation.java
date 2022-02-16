@@ -1,9 +1,7 @@
 package kea.sem3.jwtdemo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -25,7 +23,7 @@ public class Reservation {
     private LocalDateTime reservationDate;
 
     @Column(name="rental_date")
-    private LocalDate rentalDate; //TODO check if markign this as modifiable non-auto generated is correct
+    private LocalDate rentalDate;
 
     @Column(name="date_created")
     @CreationTimestamp
@@ -47,6 +45,10 @@ public class Reservation {
         this.rentalDate = rentalDate;
         this.member = member;
         this.car = car;
+    }
+
+    public void setRentalDate(LocalDate rentalDate) {
+        this.rentalDate = rentalDate;
     }
 }
 

@@ -12,12 +12,25 @@ import kea.sem3.jwtdemo.repositories.ReservationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ReservationService {
     MemberRepository memberRepository;
     CarRepository carRepository;
     ReservationRepository reservationRepository;
+
+    public List<ReservationResponse> getReservations() {
+        List<Reservation> reservations = reservationRepository.findAll();
+        return ReservationResponse.getReservationsFromEntities(reservations);
+    }
+
+    public ReservationResponse getReservationById(int id) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new Client4xxException("Reservation id:" + id + " not found"));
+        return new ReservationResponse(reservation);
+    }
 
     public ReservationResponse makeReservation(ReservationRequest reservationRequest) {
         Member member = memberRepository.findById(reservationRequest.getMemberId()).orElseThrow(() -> new Client4xxException("No Member with this id"));
@@ -30,7 +43,17 @@ public class ReservationService {
                 throw new Client4xxException("Car " + car.getId() + " " + car.getBrand() + " " + car.getModel() + " not available on date" + r.getRentalDate());
             }
         }
-        Reservation reservation = new Reservation(reservationRequest.getRentalDate(), member, car); // TODO: Handle change of rentalDatefrom LocalDateTime to LocalDate
+        Reservation reservation = new Reservation(reservationRequest.getRentalDate(), member, car);
         return new ReservationResponse(reservationRepository.save(reservation));
+    }
+
+    public ReservationResponse updateRentalDate(int reservationId, LocalDate newRentalDate) {
+        Reservation reservationToEdit = reservationRepository.getById(reservationId);
+        reservationToEdit.setRentalDate(newRentalDate);
+        return new ReservationResponse(reservationRepository.save(reservationToEdit));
+    }
+
+    public void deleteReservation(int id) {
+        reservationRepository.deleteById(id);
     }
 }
