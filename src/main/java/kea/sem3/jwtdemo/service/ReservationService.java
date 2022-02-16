@@ -30,7 +30,7 @@ public class ReservationService {
                 throw new Client4xxException("Car " + car.getId() + " " + car.getBrand() + " " + car.getModel() + " not available on date" + r.getRentalDate());
             }
         }
-        Reservation reservation = new Reservation(reservationRequest.getRentalDate(), member, car);
+        Reservation reservation = new Reservation(reservationRequest.getRentalDate(), member, car); // TODO: Handle change of rentalDatefrom LocalDateTime to LocalDate
         return new ReservationResponse(reservationRepository.save(reservation));
     }
 }

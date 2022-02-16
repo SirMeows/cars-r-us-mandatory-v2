@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
@@ -24,8 +25,7 @@ public class Reservation {
     private LocalDateTime reservationDate;
 
     @Column(name="rental_date")
-    @CreationTimestamp // TODO: Should this be @DateModified
-    private LocalDateTime rentalDate;
+    private LocalDate rentalDate; //TODO check if markign this as modifiable non-auto generated is correct
 
     @Column(name="date_created")
     @CreationTimestamp
@@ -43,7 +43,7 @@ public class Reservation {
     @ManyToOne
     private Car car;
 
-    public Reservation(LocalDateTime rentalDate, Member member, Car car) {
+    public Reservation(LocalDate rentalDate, Member member, Car car) {
         this.rentalDate = rentalDate;
         this.member = member;
         this.car = car;

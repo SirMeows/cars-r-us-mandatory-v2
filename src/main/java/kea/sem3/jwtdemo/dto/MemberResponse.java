@@ -22,6 +22,7 @@ public class MemberResponse {
     boolean approved;
     int ranking;
 
+
     public MemberResponse(Member member, boolean includeAll) {
         this.firstName = member.getFirstName();
         this.lastName = member.getLastName();

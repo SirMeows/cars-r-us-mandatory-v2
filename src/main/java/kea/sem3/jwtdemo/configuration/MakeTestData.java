@@ -67,18 +67,27 @@ public class MakeTestData implements ApplicationRunner {
         carRepository.save(car2);
     }
     public void makePlainReservations(){
+
         Car car1 = new Car("Tesla", "X", 1000,200);
-        Car car2 = new Car("Tesla", "Y", 1300,200);
         carRepository.save(car1);
-        carRepository.save(car2);
+
+        Member mem1 = new Member("fsdgfal","jjjddd@stuff.dk","pwhghgh","Jum");
+        mem1.addRole(Role.USER);
+        memberRepository.save(mem1);
+
+        Reservation res = new Reservation(LocalDate.of(2022, 03, 03), mem1, car1);
+        reservationRepository.save(res);
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
         userRepository.deleteAll();
+        memberRepository.deleteAll();
+        reservationRepository.deleteAll();
 
         makePlainUsers();
         makePlainCars();
+        makePlainReservations();
     }
 }

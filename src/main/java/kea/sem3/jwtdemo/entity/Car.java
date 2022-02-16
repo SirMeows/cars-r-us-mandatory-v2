@@ -42,9 +42,7 @@ public class Car {
     @UpdateTimestamp
     private LocalDateTime dateEdited;
 
-//    private boolean isAvailable;
-
-    @JsonIgnore // to prevent endless loop when serializing to json
+    @JsonIgnore //TODO Make note - to prevent endless loop when serializing to json
     @OneToMany(mappedBy = "car")
     Set<Reservation> reservations = new HashSet<>();
 

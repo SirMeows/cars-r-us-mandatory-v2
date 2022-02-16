@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,7 +16,7 @@ public class ReservationRequest {
 
     private String memberId;
     private int carId;
-    private LocalDateTime rentalDate;
+    private LocalDate rentalDate;
 
     // add other properties
 }

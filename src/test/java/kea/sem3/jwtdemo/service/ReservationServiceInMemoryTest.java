@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*; // all assertion class methods can be called statically
 
@@ -51,7 +53,7 @@ class ReservationServiceInMemoryTest {
 
     @Test
     void makeReservation() {
-        ReservationResponse rr = reservationService.makeReservation(new ReservationRequest(memberId, carId, LocalDateTime.of(2021, 02, 15, 00, 00)));
+        ReservationResponse rr = reservationService.makeReservation(new ReservationRequest(memberId, carId, LocalDate.of(2021, 02, 15)));
         assertTrue(reservationRepository.count() == 1);
         assertEquals(memberId, rr.getMemberId());
         assertEquals(carId, rr.getCarId());
