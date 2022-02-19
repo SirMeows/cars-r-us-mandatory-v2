@@ -48,7 +48,7 @@ class ReservationServiceInMemoryTest {
 
     @BeforeEach
     void setupService() {
-        reservationService = new ReservationService(memberRepository, carRepository, reservationRepository);
+        reservationService = new ReservationService(reservationRepository, carRepository, memberRepository);
     }
 
     @Test

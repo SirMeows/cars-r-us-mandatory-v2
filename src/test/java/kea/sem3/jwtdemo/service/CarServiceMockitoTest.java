@@ -24,13 +24,11 @@ class CarServiceMockitoTest {
     @Mock
     CarRepository carRepository;
 
-    //@Autowired
     CarService carService;
 
     @BeforeEach
     void setUp() {
         carService = new CarService(carRepository);
-
     }
 
     @Test

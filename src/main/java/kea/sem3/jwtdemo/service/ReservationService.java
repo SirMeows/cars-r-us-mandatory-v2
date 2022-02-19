@@ -18,9 +18,9 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ReservationService {
-    MemberRepository memberRepository;
-    CarRepository carRepository;
     ReservationRepository reservationRepository;
+    CarRepository carRepository;
+    MemberRepository memberRepository;
 
     public List<ReservationResponse> getReservations() {
         List<Reservation> reservations = reservationRepository.findAll();
