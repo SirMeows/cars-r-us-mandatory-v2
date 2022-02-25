@@ -39,15 +39,4 @@ public class ReservationController {
     public void deleteReservation(int id) {
         reservationService.deleteReservation(id);
     }
-
-
-
-
-
-
-
-
-    // TODO: Write ReservationController
-
-    // TODO: Test ReservationController class
 }
