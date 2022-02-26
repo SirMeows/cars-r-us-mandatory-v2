@@ -5,7 +5,6 @@ import kea.sem3.jwtdemo.dto.CarRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.aspectj.asm.IModelFilter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 

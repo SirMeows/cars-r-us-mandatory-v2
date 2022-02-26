@@ -1,6 +1,5 @@
 package kea.sem3.jwtdemo.service;
 
-import kea.sem3.jwtdemo.dto.CarResponse;
 import kea.sem3.jwtdemo.dto.MemberRequest;
 import kea.sem3.jwtdemo.dto.MemberResponse;
 import kea.sem3.jwtdemo.entity.Member;

@@ -16,12 +16,9 @@ public class ReservationRequest {
     private int carId;
     private LocalDate rentalDate;
 
-    // TODO: add other properties
-
     public ReservationRequest(String memberId, int carId, LocalDate rentalDate) {
         this.memberId = memberId;
         this.carId = carId;
         this.rentalDate = rentalDate;
-
     }
 }

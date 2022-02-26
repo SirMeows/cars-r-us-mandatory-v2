@@ -2,7 +2,6 @@ package kea.sem3.jwtdemo.api;
 
 import kea.sem3.jwtdemo.dto.MemberRequest;
 import kea.sem3.jwtdemo.dto.MemberResponse;
-import kea.sem3.jwtdemo.entity.Member;
 import kea.sem3.jwtdemo.service.MemberService;
 import org.springframework.web.bind.annotation.*;
 

@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
-import java.time.Month;
 
 @Controller
 @Profile("!test")
@@ -58,15 +57,16 @@ public class MakeTestData implements ApplicationRunner {
         System.out.println("########################################################################################");
         System.out.println("########################################################################################");
         System.out.println("Created TEST Users");
-
     }
+
     public void makePlainCars(){
         Car car1 = new Car("Tesla", "X", 1000,500);
         Car car2 = new Car("Tesla", "Y", 1300,200);
         carRepository.save(car1);
         carRepository.save(car2);
     }
-    public void makePlainReservations(){
+
+    public void makeReservations(){
 
         Car car1 = new Car("Tesla", "X", 1000,200);
         carRepository.save(car1);
@@ -88,6 +88,6 @@ public class MakeTestData implements ApplicationRunner {
 
         makePlainUsers();
         makePlainCars();
-        makePlainReservations();
+        makeReservations();
     }
 }

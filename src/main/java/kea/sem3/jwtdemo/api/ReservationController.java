@@ -5,7 +5,6 @@ import kea.sem3.jwtdemo.dto.ReservationResponse;
 import kea.sem3.jwtdemo.service.ReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.List;
 
